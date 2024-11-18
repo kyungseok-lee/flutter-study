@@ -11,7 +11,6 @@
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 npm install -g firebase-tools
 dart pub global activate flutterfire_cli
-
 firebase login
 flutterfire configure
 flutter pub add firebase_core
@@ -46,10 +45,12 @@ flutter run
 ```
 
 ## Logger
+- logger 설치
 ```shell
 flutter pub add logger
 ```
 
+- 사용 예시
 ```dart
 import 'package:logger/logger.dart';
 
@@ -77,4 +78,61 @@ void demo() {
 ```
 
 ## ENV (Secret)
-TODO: ENV (Secret) 작성 중
+- flutter_dotenv 설치
+```shell
+flutter pub add flutter_dotenv
+```
+
+- 사용 예시
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+Future main() async {
+  await dotenv.load(fileName: "assets/.env", mergeWith: {
+    'TEST_VAR': '5',
+  }); // mergeWith optional, you can include Platform.environment for Mobile/Desktop app
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'flutter_dotenv Demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Dotenv Demo'),
+        ),
+        body: SingleChildScrollView(
+          child: FutureBuilder<String>(
+            future: rootBundle.loadString('assets/.env'),
+            initialData: '',
+            builder: (context, snapshot) => Container(
+              padding: const EdgeInsets.all(50),
+              child: Column(
+                children: [
+                  Text(
+                    'Env map: ${dotenv.env.toString()}',
+                  ),
+                  const Divider(thickness: 5),
+                  const Text('Original'),
+                  const Divider(),
+                  Text(snapshot.data ?? ''),
+                  Text(dotenv.get('MISSING',
+                      fallback: 'Default fallback value')),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```

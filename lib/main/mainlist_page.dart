@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutterstudy/utils/logger.dart';
+import 'package:flutterstudy/config/logger.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -16,11 +16,11 @@ class MainPage extends StatefulWidget {
 class _MainPage extends State<MainPage> {
   Future<String> loadAsset() async {
     try {
-      final data = await rootBundle.loadString("res/api/list.json");
+      final data = await rootBundle.loadString("assets/api/list.json");
       logger.d("Data loaded successfully: $data");
       return data;
     } catch (e) {
-      logger.e("Error loading JSON", error: e);
+      logger.e("Data loaded Error", error: e);
       return '{}';
     }
   }
