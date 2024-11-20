@@ -21,6 +21,7 @@ class Config {
         authDomain: dotenv.env['FIREBASE_WEB_AUTH_DOMAIN']!,
         storageBucket: dotenv.env['FIREBASE_WEB_STORAGE_BUCKET']!,
         measurementId: dotenv.env['FIREBASE_WEB_MEASUREMENT_ID']!,
+        databaseURL: dotenv.env['FIREBASE_WEB_DATABASE_URL']!,
       ),
       android: FirebaseAndroid(
         apiKey: dotenv.env['FIREBASE_ANDROID_API_KEY']!,
@@ -66,6 +67,7 @@ class FirebaseWeb {
   final String authDomain;
   final String storageBucket;
   final String measurementId;
+  final String databaseURL;
 
   const FirebaseWeb({
     required this.apiKey,
@@ -75,6 +77,7 @@ class FirebaseWeb {
     required this.authDomain,
     required this.storageBucket,
     required this.measurementId,
+    required this.databaseURL,
   });
 }
 

@@ -56,6 +56,7 @@ class DefaultFirebaseOptions {
     authDomain: Config.firebase.web.authDomain,
     storageBucket: Config.firebase.web.storageBucket,
     measurementId: Config.firebase.web.measurementId,
+    databaseURL: Config.firebase.web.databaseURL,
   );
 
   static FirebaseOptions android = FirebaseOptions(
