@@ -43,4 +43,6 @@ app.*.map.json
 /android/app/release
 
 # Custom
-assets/env/.env.*
+assets/env/.env
+assets/env/.env.development
+assets/env/.env.production

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterstudy/config/logger.dart';
+import 'package:flutterstudy/sub/question_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -17,10 +18,10 @@ class _MainPage extends State<MainPage> {
   Future<String> loadAsset() async {
     try {
       final data = await rootBundle.loadString("assets/api/list.json");
-      logger.d("Data loaded successfully: $data");
+      logger.debug("Data loaded successfully: $data");
       return data;
     } catch (e) {
-      logger.e("Data loaded Error", error: e);
+      logger.error("Data loaded Error", e);
       return '{}';
     }
   }
@@ -29,6 +30,7 @@ class _MainPage extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
+        future: loadAsset(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.active:
@@ -52,7 +54,18 @@ class _MainPage extends State<MainPage> {
                             child: Text(title),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () async {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return QuestionPage(
+                                  question: list["questions"][value]['file']
+                                      .toString(),
+                                );
+                              },
+                            ),
+                          );
+                        },
                       );
                     },
                     itemCount: list["questions"].length,
@@ -70,7 +83,6 @@ class _MainPage extends State<MainPage> {
               );
           }
         },
-        future: loadAsset(),
       ),
     );
   }

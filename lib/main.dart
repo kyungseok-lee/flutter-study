@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutterstudy/config/logger.dart';
 
-import 'config/app_config.dart';
+import 'config/config.dart';
 import 'main/mainlist_page.dart';
 
 main() async {
   // env
-  await AppConfig.load();
+  await Config.load();
 
   // main
   runApp(const MyApp());
@@ -18,9 +16,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.d("dotenv Map: ${dotenv.env}");
-    logger.d("dotenv ENV: ${dotenv.get("ENV")}");
-
     return MaterialApp(
       title: 'Personality Test',
       theme: ThemeData(

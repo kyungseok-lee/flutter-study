@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
+import 'config/config.dart';
+
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
 /// Example:
@@ -46,33 +48,30 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // TODO: firebase web api key 정보 분리
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    authDomain: '',
-    storageBucket: '',
-    measurementId: '',
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: Config.firebase.web.apiKey,
+    appId: Config.firebase.web.appId,
+    messagingSenderId: Config.firebase.web.messagingSenderId,
+    projectId: Config.firebase.web.projectId,
+    authDomain: Config.firebase.web.authDomain,
+    storageBucket: Config.firebase.web.storageBucket,
+    measurementId: Config.firebase.web.measurementId,
   );
 
-  // TODO: firebase android api key 정보 분리
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: Config.firebase.android.apiKey,
+    appId: Config.firebase.android.appId,
+    messagingSenderId: Config.firebase.android.messagingSenderId,
+    projectId: Config.firebase.android.projectId,
+    storageBucket: Config.firebase.android.storageBucket,
   );
 
-  // TODO: firebase ios api key 정보 분리
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
-    iosBundleId: '',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: Config.firebase.ios.apiKey,
+    appId: Config.firebase.ios.appId,
+    messagingSenderId: Config.firebase.ios.messagingSenderId,
+    projectId: Config.firebase.ios.projectId,
+    storageBucket: Config.firebase.ios.storageBucket,
+    iosBundleId: Config.firebase.ios.iosBundleId,
   );
 }
