@@ -1,8 +1,8 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Config {
-  static late ENV env;
-  static late Firebase firebase;
+  static late final ENV env;
+  static late final FirebaseConfig firebase;
 
   Config._();
 
@@ -12,7 +12,7 @@ class Config {
     env = ENV.values.firstWhere(
         (e) => e.toString().split('.').last == dotenv.env['ENVIRONMENT']!);
 
-    firebase = Firebase(
+    firebase = FirebaseConfig(
       web: FirebaseWeb(
         apiKey: dotenv.env['FIREBASE_WEB_API_KEY']!,
         appId: dotenv.env['FIREBASE_WEB_APP_ID']!,
@@ -46,12 +46,12 @@ enum ENV {
   production,
 }
 
-class Firebase {
+class FirebaseConfig {
   final FirebaseWeb web;
   final FirebaseAndroid android;
   final FirebaseIOS ios;
 
-  const Firebase({
+  const FirebaseConfig({
     required this.web,
     required this.android,
     required this.ios,
