@@ -48,21 +48,12 @@ flutter pub add connectivity_plus
 - 사용 예시
 ```dart
     var connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      // 통신 구간
-    }
-
-    if (mounted) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const AlertDialog(
-            title: Text('심리테스트앱'),
-            content: Text('지금 인터넷이 연결이 되어있지 않아 심리테스트 앱을 사용할 수 없습니다. 나중에 다시 실행해 주세요.'),
-          );
-        },
-      );
+    var isConnect = connectivityResult.contains(ConnectivityResult.mobile) ||
+            connectivityResult.contains(ConnectivityResult.wifi);
+    
+    logger.debug("connectivityResult: $connectivityResult, isConnect: $isConnect");
+    
+    if (isConnect) {
     }
 ```
 

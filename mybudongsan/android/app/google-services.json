@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "611272644976",
+    "firebase_url": "https://mybudongsan-9778b-default-rtdb.firebaseio.com",
+    "project_id": "mybudongsan-9778b",
+    "storage_bucket": "mybudongsan-9778b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611272644976:android:602c6fd8cd33737254d7b5",
+        "android_client_info": {
+          "package_name": "com.example.mybudongsan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIWT4T8PTT1Gl6NpMv5AuNmV0wf664Hvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
