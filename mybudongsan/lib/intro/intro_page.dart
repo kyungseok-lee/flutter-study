@@ -4,8 +4,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:mybudongsan/map/map_page.dart';
 
-import '../config/logger.dart';
-
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
 
@@ -30,10 +28,13 @@ class _IntroPage extends State<IntroPage> {
               if (snapshot.data != null) {
                 if (snapshot.data!) {
                   Future.delayed(const Duration(seconds: 1), () {
-                    Navigator.of(context)
-                        .pushReplacement(MaterialPageRoute(builder: (context) {
-                      return const MapPage();
-                    }));
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const MapPage();
+                        },
+                      ),
+                    );
                   });
                   return const Center(
                     child: Column(
@@ -57,7 +58,8 @@ class _IntroPage extends State<IntroPage> {
                   return const AlertDialog(
                     title: Text('My 부동산'),
                     content: Text(
-                        '지금 인터넷이 연결이 되어있지 않아 부동산 앱을 사용할 수 없습니다. 나중에 다시 실행해 주세요.'),
+                      '지금 인터넷이 연결이 되어있지 않아 부동산 앱을 사용할 수 없습니다. 나중에 다시 실행해 주세요.',
+                    ),
                   );
                 }
               } else {
@@ -81,6 +83,7 @@ class _IntroPage extends State<IntroPage> {
   }
 
   Future<bool> connectCheck() async {
+    /*
     var connectivityResult = await Connectivity().checkConnectivity();
     var isConnect = connectivityResult.contains(ConnectivityResult.mobile) ||
         connectivityResult.contains(ConnectivityResult.wifi);
@@ -89,5 +92,13 @@ class _IntroPage extends State<IntroPage> {
         "connectivityResult: $connectivityResult, isConnect: $isConnect");
 
     return isConnect;
+    */
+    var connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

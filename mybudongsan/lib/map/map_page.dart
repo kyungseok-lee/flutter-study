@@ -85,36 +85,46 @@ class _MapPage extends State<MapPage> {
             ListTile(
               title: const Text('내가 선택한 아파트'),
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return const MyFavoritePage();
-                }));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const MyFavoritePage();
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
               title: const Text('설정'),
               onTap: () async {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return SettingPage();
-                })).then((value) async {
-                  final SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  final int? type = prefs.getInt('mapType');
-                  setState(() {
-                    switch (type) {
-                      case 0:
-                        mapType = MapType.terrain;
-                        break;
-                      case 1:
-                        mapType = MapType.satellite;
-                        break;
-                      case 2:
-                        mapType = MapType.hybrid;
-                        break;
-                    }
-                  });
-                });
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return SettingPage();
+                    },
+                  ),
+                ).then(
+                  (value) async {
+                    final SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    final int? type = prefs.getInt('mapType');
+                    setState(
+                      () {
+                        switch (type) {
+                          case 0:
+                            mapType = MapType.terrain;
+                            break;
+                          case 1:
+                            mapType = MapType.satellite;
+                            break;
+                          case 2:
+                            mapType = MapType.hybrid;
+                            break;
+                        }
+                      },
+                    );
+                  },
+                );
               },
             ),
           ],

@@ -1,5 +1,11 @@
 # MyBudongsan
 
+## Android
+- gradlew 삭제 시
+```shell
+cd android
+gradle wrapper
+```
 
 ## iOS 설정 오류 수정
 - ios/Podfile 수정

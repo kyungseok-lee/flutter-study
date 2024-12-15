@@ -47,6 +47,5 @@ app.*.map.json
 env/
 ios/Runner/GoogleService-Info.plist
 ios/Podfile
-android/app/src/main/AndroidManifest.xml
 android/app/google-services.json
 firebase.json
